@@ -1,0 +1,9 @@
+
+dist/
+.DS_Store
+*.exe
+*.test
+*.out
+scraper.py
+files.log
+.env

@@ -1,0 +1,40 @@
+sample_interval_sec: 1
+collection_interval_sec: 60
+log_dir: /var/log/system-sentinel
+retention_days: 30
+interface: eth0
+
+spikes:
+  cpu:
+    enabled: true
+    absolute_threshold: 80.0
+    relative_threshold: 50.0
+  memory:
+    enabled: true
+    absolute_threshold: 85.0
+    relative_threshold: 20.0
+  network:
+    enabled: true
+    rx_mbps_threshold: 100.0
+    tx_mbps_threshold: 100.0
+    relative_threshold: 100.0
+
+alerts:
+  cpu:
+    enabled: true
+    absolute_threshold: 95.0
+    relative_threshold: 75.0
+  memory:
+    enabled: true
+    absolute_threshold: 95.0
+  network:
+    enabled: true
+    rx_mbps_threshold: 500.0
+    tx_mbps_threshold: 500.0
+
+scripts:
+  dir: /etc/system-sentinel/sh
+  env_file: /etc/system-sentinel/.env
+  debounce_sec: 60
+  timeout_sec: 30
+

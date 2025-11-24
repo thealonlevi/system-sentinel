@@ -1,0 +1,13 @@
+[Unit]
+Description=System Sentinel Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/system-sentinel -config /etc/system-sentinel/config.yaml
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
