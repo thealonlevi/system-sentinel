@@ -9,14 +9,15 @@ import (
 )
 
 type Config struct {
-	SampleIntervalSec     int     `yaml:"sample_interval_sec"`
-	CollectionIntervalSec int     `yaml:"collection_interval_sec"`
-	LogDir                string  `yaml:"log_dir"`
-	RetentionDays         int     `yaml:"retention_days"`
-	Interface             string  `yaml:"interface"`
-	Spikes                Spikes  `yaml:"spikes"`
-	Alerts                Alerts  `yaml:"alerts"`
-	Scripts               Scripts `yaml:"scripts"`
+	SampleIntervalSec     int               `yaml:"sample_interval_sec"`
+	CollectionIntervalSec int               `yaml:"collection_interval_sec"`
+	LogDir                string            `yaml:"log_dir"`
+	RetentionDays         int               `yaml:"retention_days"`
+	Interface             string            `yaml:"interface"`
+	Spikes                Spikes            `yaml:"spikes"`
+	Alerts                Alerts            `yaml:"alerts"`
+	Scripts               Scripts           `yaml:"scripts"`
+	Env                   map[string]string `yaml:"env"`
 }
 
 type Spikes struct {

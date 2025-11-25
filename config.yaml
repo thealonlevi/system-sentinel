@@ -32,6 +32,9 @@ alerts:
     rx_mbps_threshold: 1000.0
     tx_mbps_threshold: 1000.0
 
+env:
+  SYS_PUBLIC_IP: "203.0.113.10"
+
 scripts:
   dir: /etc/system-sentinel/sh
   env_file: /etc/system-sentinel/.env

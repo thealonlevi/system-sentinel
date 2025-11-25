@@ -82,6 +82,12 @@ func (r *Runner) buildEnv(alertTypes []string, snap metrics.MetricsSnapshot) map
 		"SYS_NET_TX_MBPS":      strconv.FormatFloat(snap.NetTxMbps, 'f', 2, 64),
 	}
 
+	if r.cfg.Env != nil {
+		for k, v := range r.cfg.Env {
+			env[k] = v
+		}
+	}
+
 	return env
 }
 
