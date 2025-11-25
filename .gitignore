@@ -7,3 +7,4 @@ dist/
 scraper.py
 files.log
 .env
+config.yaml
