@@ -33,10 +33,15 @@ alerts:
     tx_mbps_threshold: 1000.0
 
 env:
-  SYS_PUBLIC_IP: "203.0.113.10"
+  SYS_PUBLIC_IP: "127.0.0.1"
+  FLASH_ALERT_WEBHOOK_URL: ""
+  EVENTS_HMAC_SECRET: ""
+  SERVICE: "api"
 
 scripts:
   dir: /etc/system-sentinel/sh
   env_file: /etc/system-sentinel/.env
   debounce_sec: 60
   timeout_sec: 30
+  enabled: true
+

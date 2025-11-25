@@ -88,7 +88,7 @@ func main() {
 					log.Printf("log alert error: %v", err)
 				}
 
-				if alertEngine.ShouldExecuteScripts(alertTypes) {
+				if cfg.Scripts.Enabled && alertEngine.ShouldExecuteScripts(alertTypes) {
 					go func(types []string, snapshot metrics.MetricsSnapshot) {
 						if err := scriptRunner.Execute(types, snapshot); err != nil {
 							log.Printf("script execution error: %v", err)

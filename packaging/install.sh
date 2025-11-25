@@ -25,11 +25,19 @@ fi
 echo "Creating scripts directory..."
 sudo mkdir -p /etc/system-sentinel/sh
 
-if [ ! -f /etc/system-sentinel/sh/example_alert.sh ]; then
-    echo "Installing example script..."
-    sudo cp sh/example_alert.sh /etc/system-sentinel/sh/example_alert.sh
-    sudo chmod +x /etc/system-sentinel/sh/example_alert.sh
-fi
+echo "Installing scripts from sh/..."
+for script in sh/*.sh; do
+    [ -f "$script" ] || continue
+    script_name="$(basename "$script")"
+    target="/etc/system-sentinel/sh/$script_name"
+    if [ ! -f "$target" ]; then
+        echo "Installing script $script_name..."
+        sudo cp "$script" "$target"
+        sudo chmod +x "$target"
+    else
+        echo "Script $script_name already exists, skipping."
+    fi
+done
 
 echo "Creating log directory..."
 sudo mkdir -p /var/log/system-sentinel
@@ -46,4 +54,3 @@ sudo systemctl enable --now system-sentinel
 echo "Installation complete!"
 echo "Check status with: systemctl status system-sentinel"
 echo "View logs with: tail -f /var/log/system-sentinel/metrics-*.ndjson"
-

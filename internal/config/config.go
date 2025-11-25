@@ -73,6 +73,7 @@ type Scripts struct {
 	EnvFile     string `yaml:"env_file"`
 	DebounceSec int    `yaml:"debounce_sec"`
 	TimeoutSec  int    `yaml:"timeout_sec"`
+	Enabled     bool   `yaml:"enabled"`
 }
 
 func LoadConfig(path string) (*Config, error) {
