@@ -29,7 +29,7 @@ net_tx="${SYS_NET_TX_MBPS:-unknown}"
 
 ts_iso_now="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-body=$(printf '{"severity":"HIGH","topic":"subnet-sentinel.failure","alert_key":"system-sentinel:%s:%s","message":"System sentinel alert for %s on %s","labels":{"env":"prod","service":"system-sentinel","source_host":"%s","server_ip":"%s","event_metric":"%s"},"details":{"sys_timestamp":"%s","sys_event_type":"%s","cpu_usage":"%s","mem_used_percent":"%s","mem_used_bytes":"%s","mem_total_bytes":"%s","net_interface":"%s","net_rx_mbps":"%s","net_tx_mbps":"%s"},"occurred_at":"%s","idempotency_key":"%s"}' \
+body=$(printf '{"severity":"HIGH","topic":"system-sentinel.alert","alert_key":"system-sentinel:%s:%s","message":"System sentinel alert for %s on %s","labels":{"env":"prod","service":"system-sentinel","source_host":"%s","server_ip":"%s","event_metric":"%s"},"details":{"sys_timestamp":"%s","sys_event_type":"%s","cpu_usage":"%s","mem_used_percent":"%s","mem_used_bytes":"%s","mem_total_bytes":"%s","net_interface":"%s","net_rx_mbps":"%s","net_tx_mbps":"%s"},"occurred_at":"%s","idempotency_key":"%s"}' \
   "$metric" "$server_ip" \
   "$metric" "$server_ip" \
   "$host" "$server_ip" "$metric" \
