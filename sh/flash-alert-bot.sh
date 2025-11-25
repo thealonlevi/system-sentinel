@@ -13,8 +13,6 @@ ts_ms="$(date +%s%3N)"
 idempotency_key="$(uuidgen 2>/dev/null || echo "${ts_ms}-$$")"
 host="$(hostname)"
 
-environment="${ENVIRONMENT:-${ENV:-prod}}"
-
 server_ip="${SYS_PUBLIC_IP:-$host}"
 
 metric="${SYS_EVENT_METRIC:-unknown}"
@@ -31,11 +29,10 @@ net_tx="${SYS_NET_TX_MBPS:-unknown}"
 
 ts_iso_now="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
-body=$(printf '{"severity":"%s","topic":"system-sentinel.alert","alert_key":"system-sentinel:%s:%s","message":"System sentinel alert for %s on %s","labels":{"env":"%s","service":"system-sentinel","source_host":"%s","server_ip":"%s","event_metric":"%s"},"details":{"sys_timestamp":"%s","sys_event_type":"%s","cpu_usage":"%s","mem_used_percent":"%s","mem_used_bytes":"%s","mem_total_bytes":"%s","net_interface":"%s","net_rx_mbps":"%s","net_tx_mbps":"%s"},"occurred_at":"%s","idempotency_key":"%s"}' \
-  "HIGH" \
+body=$(printf '{"severity":"HIGH","topic":"system-sentinel.failure","alert_key":"system-sentinel:%s:%s","message":"System sentinel alert for %s on %s","labels":{"env":"prod","service":"system-sentinel","source_host":"%s","server_ip":"%s","event_metric":"%s"},"details":{"sys_timestamp":"%s","sys_event_type":"%s","cpu_usage":"%s","mem_used_percent":"%s","mem_used_bytes":"%s","mem_total_bytes":"%s","net_interface":"%s","net_rx_mbps":"%s","net_tx_mbps":"%s"},"occurred_at":"%s","idempotency_key":"%s"}' \
   "$metric" "$server_ip" \
   "$metric" "$server_ip" \
-  "$environment" "system-sentinel" "$server_ip" "$metric" \
+  "$host" "$server_ip" "$metric" \
   "$sys_timestamp" "$sys_event_type" "$cpu" "$mem_percent" "$mem_used" "$mem_total" "$net_if" "$net_rx" "$net_tx" \
   "$ts_iso_now" "$idempotency_key")
 
